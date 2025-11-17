@@ -20,7 +20,6 @@ function getLength(value: string | unknown[]): number {
   return 0;
 }
 
-
 class Person {
   name: string;
   age: number;
@@ -33,5 +32,14 @@ class Person {
   getDetails(): string {
     return `'Name: ${this.name}, Age: ${this.age}'`;
   }
+}
+
+type Item = {
+  title: string;
+  rating: number;
+};
+
+function filterByRating(items: Item[]): Item[] {
+  return items.filter((item) => item.rating >= 4);
 }
 
