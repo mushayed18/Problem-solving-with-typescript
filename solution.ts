@@ -48,12 +48,11 @@ type User = {
   name: string;
   email: string;
   isActive: boolean;
-}
+};
 
 function filterActiveUsers(users: User[]): User[] {
   return users.filter((user) => user.isActive);
 }
-
 
 interface Book {
   title: string;
@@ -69,7 +68,25 @@ function printBookDetails(book: Book): void {
   );
 }
 
+function getUniqueValues<T extends number | string>(arr1: T[], arr2: T[]): T[] {
+  const lookup: { [key: string]: boolean } = {};
+  const result: T[] = [];
 
+  for (let i = 0; i < arr1.length; i++) {
+    const key = String(arr1[i]);
+    if (!lookup[key]) {
+      lookup[key] = true;
+      result[result.length] = arr1[i];
+    }
+  }
 
+  for (let i = 0; i < arr2.length; i++) {
+    const key = String(arr2[i]);
+    if (!lookup[key]) {
+      lookup[key] = true;
+      result[result.length] = arr2[i];
+    }
+  }
 
-
+  return result;
+}
