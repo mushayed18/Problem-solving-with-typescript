@@ -90,3 +90,19 @@ function getUniqueValues<T extends number | string>(arr1: T[], arr2: T[]): T[] {
 
   return result;
 }
+
+type Product = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+};
+
+function calculateTotalPrice(products: Product[]): number {
+  return products.reduce((total, product) => {
+    const discount = product.discount ?? 0;
+    const priceAfterDiscount = product.price * (1 - discount / 100);
+    return total + priceAfterDiscount * product.quantity;
+  }, 0);
+}
+
